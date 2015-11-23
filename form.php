@@ -3,10 +3,6 @@
         <?php echo $field ?>
     <?php endforeach ?>
 
-    <?php foreach ($links as $link): ?>
-        <?php echo $link ?>
-    <?php endforeach ?>
-
     <?php foreach ($buttons as $button): ?>
         <?php echo $button ?>
     <?php endforeach ?>

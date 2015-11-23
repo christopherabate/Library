@@ -12,6 +12,7 @@
     "form_url_error": "Must be a valid URL.",
     "form_postcode_error": "Must be a valid postcode.",
     "form_range_error": "Must be between %minimum% and %maximum%.",
+    "already_exists_error": "«%unique%» already exists.",
     "item_index_error": "Not items found.",
     "item_view_error": "«%item%» does not exists.",
     "item_create_error": "«%item%» can not be created.",
@@ -27,7 +28,13 @@
     "create_button": "Add",
     "update_button": "Edit",
     "delete_button": "Delete",
+    "auth_login_button": "Login",
+    "auth_logout_button": "Logout",
+    "auth_recover_button": "Recover password",
     "auth_username_error": "User «%username%» does not exists.",
     "auth_password_error": "Incorrect password.",
-    "auth_login_success": "Successfully logged in."
+    "auth_email_error": "Incorrect email address.",
+    "auth_login_success": "Successfully logged in.",
+    "auth_recover_success": "A new password have been sent.",
+    "recover": "Forgotten password ?"
 }

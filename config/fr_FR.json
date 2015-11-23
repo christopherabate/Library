@@ -12,6 +12,7 @@
     "form_url_error": "N'est pas une adresse URL valide.",
     "form_postcode_error": "N'est pas un code postal valide.",
     "form_range_error": "Doit être compris entre %minimum% et %maximum%.",
+    "already_exists_error": "«%unique%» existe déjà.",
     "item_index_error": "Pas de résultats.",
     "item_view_error": "«%item%» n'existe pas.",
     "item_create_error": "«%item%» ne peut pas être créé.",
@@ -27,7 +28,13 @@
     "create_button": "Créer",
     "update_button": "Éditer",
     "delete_button": "Supprimer",
+    "auth_login_button": "Connexion",
+    "auth_logout_button": "Déconnexion",
+    "auth_recover_button": "Récupérer le mot de passe",
     "auth_username_error": "L'utilisateur «%username%» n'existe pas.",
     "auth_password_error": "Mot de passe incorrect.",
-    "auth_login_success": "Vous êtes connecté."
+    "auth_email_error": "Adresse email incorrecte pour cet utilisateur.",
+    "auth_login_success": "Vous êtes connecté.",
+    "auth_recover_success": "Un nouveau mot de passe a été envoyé.",
+    "recover": "Mot de passe oublié ?"
 }

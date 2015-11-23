@@ -1,10 +1,15 @@
 <?php
 // Déclaration des routes
 $app->route('', function() { echo Library\Core\I18n::__('welcome'); });
-$app->route('404', function() { echo Library\Core\I18n::__('internal_error'); });
+$app->route('error', function() { echo Library\Core\I18n::__('internal_error'); });
 
-$app->route('login', function() { (new Library\Auth\UserController('Library\Auth\User'))->login(); });
-$app->route('logout', function() { Library\Auth\UserController::logout(); });
+$app->route('login', function() { Library\Auth\UserController::login(null, 'recover', 'crud'); });
+$app->route('logout', function() { Library\Auth\UserController::logout('login'); });
+$app->route('recover', function() { Library\Auth\UserController::recover(null, 'login'); });
+
+$app->route('users', function() { (new Library\Crud\Controller('Library\Auth\User'))->index(); });
+$app->route('user/create', function() { (new Library\Crud\Controller('Library\Auth\User', 'users'))->create(); });
+$app->route('user/update/(\w+)', function($user) { (new Library\Crud\Controller('Library\Auth\User', 'users'))->update($user); });
 
 $app->route('(\d+)', function($id) { echo $id; }, Library\Core\Session::get('auth'), 'login');
 
@@ -27,4 +32,4 @@ $app->route('projet/update/(\d+)', function($id) { (new Library\Crud\Controller(
 $app->route('projet/delete/(\d+)', function($id) { (new Library\Crud\Controller('DemoBundle\Projet', 'crud'))->delete($id); });
 
 // Définition de la route vers les erreurs
-$app->error_route = '404';
+$app->error_route = 'error';

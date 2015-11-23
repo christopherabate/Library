@@ -9,6 +9,12 @@
 </head>
 <body>
 
+    <?php if (!empty($flash)): ?>
+        <?php foreach ($flash as $type => $message): ?>
+            <div><strong><?php echo $type ?></strong> <?php echo $message ?></div>
+        <?php endforeach ?>
+    <?php endif ?>
+
     <?php if (!empty($errors)): ?>
         <ul>
             <?php foreach ($errors as $field => $error): ?>
@@ -18,26 +24,6 @@
     <?php endif ?>
 
     <?php echo $form ?>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>
-    (function($){
-        $('body').on('submit', 'form', function(e) {
-            form = $(this);
-            
-            $.post(form.attr('action'), form.serialize())
-            .done(function(data) {
-                window.location.href = <?php echo APP_ROOT ?>+data;
-            })
-            .fail(function(data) {
-                form.replaceWith(data.responseText);
-            });
-            
-            e.preventDefault();
-            return false;
-        });
-    })(jQuery);
-    </script>
 
 </body>
 </html>

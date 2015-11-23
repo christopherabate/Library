@@ -57,7 +57,7 @@ class Helper
     /**
      *
      */
-    public static function checkSpam($delay = 5)
+    public static function checkSpam($delay = 1)
     {
         if (Session::check('timeout') || Session::check('IP')) {
             if (Session::get('IP') === self::getIP()) {
@@ -98,7 +98,7 @@ class Helper
      */
     public static function checkEmail($value)
     {
-        if (preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#', $_value)) return true;
+        if (preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#', $value)) return true;
         else return false;
     }
 
@@ -107,7 +107,7 @@ class Helper
      */
     public static function checkUrl($value)
     {
-        if (preg_match('#^(https?:\/\/+[\w\-]+\.[\w\-]+)#i', $_value)) return true;
+        if (preg_match('#^(https?:\/\/+[\w\-]+\.[\w\-]+)#i', $value)) return true;
         else return false;
     }
 
@@ -116,7 +116,7 @@ class Helper
      */
     public static function checkPostCode($value)
     {
-        if (preg_match('#^(2[abAB]|0[1-9]|[1-9][0-9])[0-9]{3}$#', $_value)) return true;
+        if (preg_match('#^(2[abAB]|0[1-9]|[1-9][0-9])[0-9]{3}$#', $value)) return true;
         else return false;
     }
 
@@ -125,7 +125,7 @@ class Helper
      */
     public static function checkTelephone($value)
     {
-        if (preg_match('#^0[1-68][0-9]{8}$#', $_value)) return true;
+        if (preg_match('#^0[1-68][0-9]{8}$#', $value)) return true;
         else return false;
     }
 

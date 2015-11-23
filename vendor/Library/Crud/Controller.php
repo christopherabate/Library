@@ -74,34 +74,27 @@ class Controller
 
         if (!$id || $model::get($id)) {
             $form = new Form((new \ReflectionClass($model))->getShortName(), $model::getFormAttributes());
-            $form->addAntispam(array(1, 2, 3));
-            $form->addHoneypot('test');
-            $form->addButton('Update', 'submit');
+            $form->addAntispam(1);
+            $form->addHoneypot(time());
+            $form->addButton(I18n::__('update_button'), 'submit');
 
             $view = ($template) ? new Template($template) : new Template(rtrim(dirname(__FILE__), '\/'.'/').'/Views/edit.php');
 
             if (!empty($_POST[(new \ReflectionClass($model))->getShortName()])) {
                 if ($form->validate($_POST[(new \ReflectionClass($model))->getShortName()])) {
-                    $model::save($form->attributes, $id);
-                    Session::flash('success', I18n::__('item_update_success', array('item' => (new \ReflectionClass($model))->getShortName())));
-                    if (Helper::isAjax()) {
-                        header("HTTP/1.0 200 Ok");
-                        die(static::$index_route);
+                    if (isset($_POST[(new \ReflectionClass($model))->getShortName()][$model::getUniqueColumn()]) && $model::get($_POST[(new \ReflectionClass($model))->getShortName()][$model::getUniqueColumn()])) {
+                        Session::flash('error', I18n::__('already_exists_error', array('unique' => $_POST[(new \ReflectionClass($model))->getShortName()][$model::getUniqueColumn()])));
                     } else {
-                        App::redirect(static::$index_route, '200 Ok');
-                    }
-                } else {
-                    if (Helper::isAjax()) {
-                        header("HTTP/1.0 400 Bad Request");
-                        die($form->build());
-                    } else {
-                        $view->set('errors', $form->errors);
+                        $model::save($form->attributes, $id);
+                        Session::flash('success', I18n::__('item_update_success', array('item' => (new \ReflectionClass($model))->getShortName())));
+                        App::redirect(static::$index_route, 200);
                     }
                 }
             }
 
             $view->set('id', $id);
-
+            $view->set('flash', Session::flash());
+            $view->set('errors', $form->errors);
             $view->set('form', $form->build());
             $view->render();
         } else {
@@ -119,7 +112,7 @@ class Controller
 
         if ($model::remove($id)) {
             Session::flash('success', I18n::__('item_delete_success', array('item' => (new \ReflectionClass($model))->getShortName())));
-            App::redirect(static::$index_route, '200 Ok');
+            App::redirect(static::$index_route, 200);
         }
         else {
             Session::flash('error', I18n::__('item_delete_error', array('item' => (new \ReflectionClass($model))->getShortName())));

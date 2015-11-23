@@ -1,7 +1,7 @@
 <?php
 // Configuration de l'application
 define('DEBUG', true);
-//define('LANG', 'fr_FR');
+define('LANG', 'fr_FR');
 
 // Database
 define('DB_DRIVER', 'mysql');
