@@ -6,3 +6,5 @@ A simple PHP framework
 - Ajax capabilities
 - Errors handler
 - ...
+
+## Tests
